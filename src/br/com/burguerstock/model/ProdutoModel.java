@@ -1,5 +1,5 @@
 
-package MODELS;
+package br.com.burguerstock.model;
 
 public class ProdutoModel {
     private int id_product;
