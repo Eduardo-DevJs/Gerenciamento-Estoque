@@ -211,7 +211,7 @@ public class ModalCadastro extends javax.swing.JFrame {
 
     private void lblVoltarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVoltarMenuMouseClicked
         // TODO add your handling code here:
-        TelaPrincipal principal = new TelaPrincipal();
+        TelaAdministrador principal = new TelaAdministrador();
         
         principal.setVisible(true);
         

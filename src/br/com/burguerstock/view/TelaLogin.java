@@ -1,18 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.burguerstock.view;
 
-/**
- *
- * @author dudu
- */
+import br.com.burguerstock.dao.AdministradorDAO;
+import br.com.burguerstock.dao.GerenteEstoqueDAO;
+import br.com.burguerstock.model.AdministradoModel;
+import br.com.burguerstock.model.GerenteModel;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+
 public class TelaLogin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaLogin
-     */
     public TelaLogin() {
         initComponents();
     }
@@ -64,27 +60,27 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(58, 58, 58)
-                                .addComponent(jLabel5)))))
+                                .addComponent(jLabel5))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(jLabel7)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel7)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -112,6 +108,11 @@ public class TelaLogin extends javax.swing.JFrame {
         btnEntrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
         btnEntrar.setBorderPainted(false);
         btnEntrar.setFocusPainted(false);
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
 
         btnFechar.setBackground(new java.awt.Color(255, 51, 0));
         btnFechar.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
@@ -182,13 +183,17 @@ public class TelaLogin extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(839, 428));
+        setSize(new java.awt.Dimension(888, 428));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         dispose();
     }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        logarAdministrador();
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,6 +228,41 @@ public class TelaLogin extends javax.swing.JFrame {
                 new TelaLogin().setVisible(true);
             }
         });
+    }
+
+    private void logarAdministrador() {
+        try {
+            AdministradoModel am = new AdministradoModel();
+            AdministradorDAO adao = new AdministradorDAO();
+
+            GerenteModel gm = new GerenteModel();
+            GerenteEstoqueDAO gedao = new GerenteEstoqueDAO();
+
+            String user = txtUsuario.getText().toLowerCase();
+            String password = txtSenha.getText().toLowerCase();
+
+            if (user.isEmpty() && password.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos");
+            } else{
+                am.setName(user);
+                am.setPassword(password);
+
+                ResultSet rs = adao.authenticateAdministrator(am);
+
+                if (rs.next()) {
+                    // Chama a tela do administrador
+                    TelaAdministrador administrador = new TelaAdministrador();
+                    administrador.setVisible(true);
+
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos");
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao Logar " + e);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
