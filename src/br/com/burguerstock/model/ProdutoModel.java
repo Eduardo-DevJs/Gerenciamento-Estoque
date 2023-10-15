@@ -1,15 +1,15 @@
-
 package br.com.burguerstock.model;
 
 public class ProdutoModel {
+
     private int id_product;
-    private String name; 
+    private String name;
     private String description;
     private int price;
     private int stockQuantity;
-    
-    public ProdutoModel(){
-        
+
+    public ProdutoModel() {
+
     }
 
     public ProdutoModel(int id_product, String name, String description, int price, int stockQuantity) {
@@ -18,9 +18,22 @@ public class ProdutoModel {
         this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
+
     }
 
-    
+    public ProdutoModel(String name, String description, int price, int stockQuantity) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+
+    }
+
+    public ProdutoModel(int id_product,String description, int price) {
+        this.id_product = id_product;
+        this.description = description;
+        this.price = price;
+    }
 
     public String getName() {
         return name;
@@ -61,7 +74,5 @@ public class ProdutoModel {
     public void setId_product(int id_product) {
         this.id_product = id_product;
     }
-    
-    
-    
+
 }

@@ -5,22 +5,23 @@
 package br.com.burguerstock.view;
 
 import br.com.burguerstock.controller.ProdutoController;
+import br.com.burguerstock.model.ProdutoModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author eliria
  */
-public class ModalCadastro extends javax.swing.JFrame {
+public class ModalAcoes extends javax.swing.JFrame {
 
     /**
      * Creates new form ModalCadastro
      */
-    public ModalCadastro() {
+    public ModalAcoes() {
         initComponents();
+        LimparCampos();
         txtCodigo.setVisible(false);
     }
 
@@ -45,10 +46,11 @@ public class ModalCadastro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaDescricao = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        btnCadastrarProduto = new javax.swing.JButton();
+        btnEditarProduto = new javax.swing.JButton();
         btnLimparCampos = new javax.swing.JButton();
         lblVoltarTelaAdministrador = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
+        btnEditarProduto1 = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,7 +69,7 @@ public class ModalCadastro extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel2.setText("Cadastro ");
+        jLabel2.setText("Editar / Excluir");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -93,6 +95,8 @@ public class ModalCadastro extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel3.setText("Nome");
 
+        txtNomeProduto.setEditable(false);
+        txtNomeProduto.setBackground(new java.awt.Color(220, 220, 220));
         txtNomeProduto.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtNomeProduto.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
@@ -102,6 +106,8 @@ public class ModalCadastro extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel5.setText("Quantidade de Estoque");
 
+        txtEstoque.setEditable(false);
+        txtEstoque.setBackground(new java.awt.Color(220, 220, 220));
         txtEstoque.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtEstoque.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
@@ -114,13 +120,13 @@ public class ModalCadastro extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel6.setText("Descrição");
 
-        btnCadastrarProduto.setBackground(new java.awt.Color(184, 37, 37));
-        btnCadastrarProduto.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        btnCadastrarProduto.setForeground(new java.awt.Color(250, 250, 250));
-        btnCadastrarProduto.setText("Cadastrar");
-        btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarProduto.setBackground(new java.awt.Color(184, 37, 37));
+        btnEditarProduto.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btnEditarProduto.setForeground(new java.awt.Color(250, 250, 250));
+        btnEditarProduto.setText("Editar");
+        btnEditarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarProdutoActionPerformed(evt);
+                btnEditarProdutoActionPerformed(evt);
             }
         });
 
@@ -141,6 +147,19 @@ public class ModalCadastro extends javax.swing.JFrame {
                 lblVoltarTelaAdministradorMouseClicked(evt);
             }
         });
+
+        btnEditarProduto1.setBackground(new java.awt.Color(184, 37, 37));
+        btnEditarProduto1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btnEditarProduto1.setForeground(new java.awt.Color(250, 250, 250));
+        btnEditarProduto1.setText("Excluir");
+        btnEditarProduto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProduto1ActionPerformed(evt);
+            }
+        });
+
+        txtCodigo.setEditable(false);
+        txtCodigo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -175,7 +194,9 @@ public class ModalCadastro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(btnCadastrarProduto)
+                                .addComponent(btnEditarProduto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEditarProduto1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimparCampos))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -210,10 +231,11 @@ public class ModalCadastro extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLimparCampos)
-                            .addComponent(btnCadastrarProduto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnEditarProduto)
+                            .addComponent(btnEditarProduto1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(13, Short.MAX_VALUE))
+                        .addGap(0, 14, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblVoltarTelaAdministrador)
@@ -233,16 +255,15 @@ public class ModalCadastro extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(495, 615));
+        setSize(new java.awt.Dimension(495, 610));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
-        CadastrarProduto();
-        TelaGerente administrador = new TelaGerente();
+    private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
+        EditarProduto();
+        LimparCampos();
         
-        administrador.ListaProdutos();
-    }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
+    }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
     private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed
         LimparCampos();
@@ -254,6 +275,10 @@ public class ModalCadastro extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_lblVoltarTelaAdministradorMouseClicked
+
+    private void btnEditarProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProduto1ActionPerformed
+       
+    }//GEN-LAST:event_btnEditarProduto1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,71 +297,71 @@ public class ModalCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModalCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalAcoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModalCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalAcoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModalCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalAcoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModalCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalAcoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModalCadastro().setVisible(true);
+                new ModalAcoes().setVisible(true);
             }
         });
     }
 
-    private void CadastrarProduto() {
+    private void EditarProduto() {
         String preco = txtPreco.getText();
-        String stock = txtEstoque.getText();
-        String nome = txtNomeProduto.getText();
         String descricao = txtAreaDescricao.getText();
-
+        ProdutoModel pm = new ProdutoModel();
+       
         boolean sucesso;
 
-        if (preco.isEmpty() && stock.isEmpty() && nome.isEmpty() && descricao.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        if (preco.isEmpty() && descricao.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos necessarios");
         } else {
             try {
-                String nomeProduto = txtNomeProduto.getText();
                 String descricaoProduto = txtAreaDescricao.getText();
                 int precoProduto = Integer.parseInt(txtPreco.getText());
-                int estoqueProduto = Integer.parseInt(txtEstoque.getText());
+                int codigoProduto = Integer.parseInt(txtCodigo.getText());
 
-                if (estoqueProduto < 10) {
-                    JOptionPane.showMessageDialog(null, "Estoque minimo é 10");
+                if (precoProduto < pm.getPrice()) {
+                    JOptionPane.showMessageDialog(null, "O preço do produto nao pode ser menor que o custo");
                 } else {
-
                     ProdutoController produtoController = new ProdutoController();
-                    sucesso = produtoController.CadastroProduto(nomeProduto, precoProduto, descricaoProduto, estoqueProduto);
+                    sucesso = produtoController.EditarProduto(codigoProduto,precoProduto, descricaoProduto);
 
                     if (sucesso == true) {
-                        JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
+                        JOptionPane.showMessageDialog(null, "Editado com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
                     }
+
                 }
 
             } catch (Exception e) {
-                System.out.println("Erro ao cadastrar o produto " + e);
+                System.out.println("Erro ao editar o produto " + e);
             }
         }
     }
-
-
+    
+    
 
     private void LimparCampos() {
-        txtNomeProduto.setText("");
         txtPreco.setText("");
-        txtEstoque.setText("");
         txtAreaDescricao.setText("");
-        txtNomeProduto.requestFocus();
+        txtPreco.requestFocus();
     }
 
+    // GETTERS E SETERS 
     public JTextArea getTxtAreaDescricao() {
         return txtAreaDescricao;
     }
@@ -379,7 +404,8 @@ public class ModalCadastro extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrarProduto;
+    private javax.swing.JButton btnEditarProduto;
+    private javax.swing.JButton btnEditarProduto1;
     private javax.swing.JButton btnLimparCampos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

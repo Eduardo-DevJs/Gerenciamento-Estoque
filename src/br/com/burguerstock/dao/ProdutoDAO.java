@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package br.com.burguerstock.dao;
 
 import br.com.burguerstock.conexao.Conexao;
@@ -29,6 +26,7 @@ public class ProdutoDAO {
             ps.setString(2, produtoModel.getDescription());
             ps.setInt(3, produtoModel.getPrice());
             ps.setInt(4, produtoModel.getStockQuantity());
+    
 
             ps.execute();
 
@@ -55,6 +53,7 @@ public class ProdutoDAO {
             while (rs.next()) {
                 ProdutoModel produtoModel = new ProdutoModel();
 
+                produtoModel.setId_product(rs.getInt("id_produto"));
                 produtoModel.setName(rs.getString("nome"));
                 produtoModel.setDescription(rs.getString("descricao"));
                 produtoModel.setPrice(rs.getInt("preco"));
@@ -71,7 +70,7 @@ public class ProdutoDAO {
     }
 
     public void updateProduct(ProdutoModel produtoModel) {
-        String sql = "UPDATE SET produtos nome = ?, descricao =?, preco=?,estoque=? WHERE id_produto";
+        String sql = "UPDATE produtos SET descricao =?, preco=? WHERE id_produto =?";
 
         Connection con = null;
         PreparedStatement ps = null;
@@ -80,12 +79,11 @@ public class ProdutoDAO {
             con = Conexao.createConnectionSQL();
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, produtoModel.getName());
-            ps.setString(2, produtoModel.getDescription());
-            ps.setInt(3, produtoModel.getPrice());
-            ps.setInt(4, produtoModel.getStockQuantity());
+    
+            ps.setString(1, produtoModel.getDescription());
+            ps.setInt(2, produtoModel.getPrice());;
 
-            ps.setInt(5, produtoModel.getId_product());
+            ps.setInt(3, produtoModel.getId_product());
 
             ps.execute();
 
@@ -95,7 +93,7 @@ public class ProdutoDAO {
     }
 
     public void deleteProduct(int id) {
-        String sql = "DELETE FROM produtos WHERE id_protuto";
+        String sql = "DELETE FROM produtos WHERE id_produto=?";
 
         Connection con = null;
         PreparedStatement ps = null;

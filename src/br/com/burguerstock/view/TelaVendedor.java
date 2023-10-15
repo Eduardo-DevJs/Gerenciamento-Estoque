@@ -1,13 +1,8 @@
 package br.com.burguerstock.view;
 
-import br.com.burguerstock.dao.ProdutoDAO;
-import br.com.burguerstock.model.ProdutoModel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+public class TelaVendedor extends javax.swing.JFrame {
 
-public class TelaAdministrador extends javax.swing.JFrame {
-
-    public TelaAdministrador() {
+    public TelaVendedor() {
         initComponents();
     }
 
@@ -50,7 +45,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel4.setText("Administrador");
+        jLabel4.setText("Vendedor");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 35)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(250, 250, 250));
@@ -65,20 +60,22 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel3))
+                    .addComponent(lblTrocarUsuario))
+                .addContainerGap(45, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(17, 17, 17)
-                            .addComponent(jLabel3))
-                        .addComponent(lblTrocarUsuario)))
-                .addContainerGap(45, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(66, 66, 66))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,12 +143,12 @@ public class TelaAdministrador extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaAdministrador().setVisible(true);
+                new TelaVendedor().setVisible(true);
             }
         });
     }
 
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -163,7 +160,4 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel lblTrocarUsuario;
     // End of variables declaration//GEN-END:variables
 
-    int setTblProdutos(DefaultTableModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
