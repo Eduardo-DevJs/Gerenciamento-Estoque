@@ -54,16 +54,15 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel5))))
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
                         .addComponent(jLabel7)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +185,6 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-
         Logar();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -232,43 +230,53 @@ public class TelaLogin extends javax.swing.JFrame {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        try {
-            con = Conexao.createConnectionSQL();
-            ps = con.prepareStatement(sql);
+        if (txtUsuario.getText().equals("") && txtSenha.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+            try {
+                con = Conexao.createConnectionSQL();
+                ps = con.prepareStatement(sql);
 
-            ps.setString(1, txtUsuario.getText());
-            ps.setString(2, txtSenha.getText());
+                ps.setString(1, txtUsuario.getText().toLowerCase());
+                ps.setString(2, txtSenha.getText().toLowerCase());
 
-            rs = ps.executeQuery();
+                rs = ps.executeQuery();
 
-            if (rs.next()) {
-                String perfil = rs.getString(4);
+                if (rs.next()) {
+                    String perfil = rs.getString(4);
 
-                if (perfil.equals("gerente")) {
-                    TelaGerente telaGerente = new TelaGerente();
+                    if (perfil.equals("gerente")) {
+                        TelaGerente telaGerente = new TelaGerente();
 
-                    telaGerente.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Seja bem vindo " + txtUsuario.getText().toUpperCase());
 
-                    dispose();
+                        telaGerente.setVisible(true);
 
-                } else if (perfil.equals("administrador")) {
-                    TelaAdministrador ta = new TelaAdministrador();
+                        dispose();
 
-                    ta.setVisible(true);
+                    } else if (perfil.equals("administrador")) {
+                        TelaAdministrador ta = new TelaAdministrador();
 
-                    dispose();
-                }else if(perfil.equals("vendedor")){
-                    TelaVendedor vendedor = new TelaVendedor();
-                    vendedor.setVisible(true);
-                    
-                    dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Usuarios ou senha invalidos!");
+                        JOptionPane.showMessageDialog(null, "Seja bem vindo " + txtUsuario.getText().toUpperCase());
+
+                        ta.setVisible(true);
+
+                        dispose();
+                    } else if (perfil.equals("vendedor")) {
+                        TelaVendedor vendedor = new TelaVendedor();
+
+                        JOptionPane.showMessageDialog(null, "Seja bem vindo " + txtUsuario.getText().toUpperCase());
+
+                        vendedor.setVisible(true);
+
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuarios ou senha invalidos!");
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println("Erro ao logar " + e);
             }
-
-        } catch (Exception e) {
-            System.out.println("Erro ao logar " + e);
         }
 
     }

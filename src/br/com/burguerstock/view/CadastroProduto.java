@@ -242,6 +242,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         TelaGerente administrador = new TelaGerente();
         
         administrador.ListaProdutos();
+        
+        LimparCampos();
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed

@@ -1,7 +1,6 @@
 package br.com.burguerstock.dao;
 
 import br.com.burguerstock.conexao.Conexao;
-import br.com.burguerstock.model.ProdutoModel;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ import br.com.burguerstock.model.ClienteModel;
 
 public class ClienteDAO {
 
-    public void createClient(ClienteModel clientesModel) {
+    public void createClient(ClienteModel clienteModel) {
         String sql = "INSERT INTO clientes (nome, idade, email, telefone) VALUES (?,?,?,?)";
 
         Connection con = null;
@@ -22,10 +21,10 @@ public class ClienteDAO {
             con = Conexao.createConnectionSQL();
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, clientesModel.getName());
-            ps.setInt(2, clientesModel.getAge());
-            ps.setString(3, clientesModel.getEmail());
-            ps.setString(4, clientesModel.getTelephone());
+            ps.setString(1, clienteModel.getName());
+            ps.setInt(2, clienteModel.getAge());
+            ps.setString(3, clienteModel.getEmail());
+            ps.setString(4, clienteModel.getTelephone());
 
             ps.execute();
 

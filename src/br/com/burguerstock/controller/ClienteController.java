@@ -7,15 +7,10 @@ package br.com.burguerstock.controller;
 import br.com.burguerstock.dao.ClienteDAO;
 import br.com.burguerstock.model.ClienteModel;
 
-/**
- *
- * @author dudu
- */
 public class ClienteController {
-
-    public boolean CadastroCliente(String nome, int idade, String telefone, String email) {
+    public boolean CadastroCliente(String nome, int idade,String email, String telefone) {
         if (nome != null && nome.length() > 0 && idade > 0 && telefone != null && email != null && email.length() > 0) {
-            ClienteModel cm = new ClienteModel();
+            ClienteModel cm = new ClienteModel(nome,idade,email,telefone);
             ClienteDAO cdao = new ClienteDAO();
             cdao.createClient(cm);
             return true;
