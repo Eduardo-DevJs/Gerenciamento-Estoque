@@ -199,7 +199,7 @@ public class TelaGerente extends javax.swing.JFrame {
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         // TODO add your handling code here:
-        ModalCadastro modalCadastro = new ModalCadastro();
+        CadastroProduto modalCadastro = new CadastroProduto();
 
         modalCadastro.setVisible(true);
 
