@@ -1,7 +1,7 @@
 package br.com.burguerstock.view;
 
-import br.com.burguerstock.dao.ProdutoDAO;
-import br.com.burguerstock.model.ProdutoModel;
+import br.com.burguerstock.dao.EstoqueDAO;
+import br.com.burguerstock.model.EstoqueModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +27,7 @@ public class TelaGerente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnInserir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblProdutos = new javax.swing.JTable();
+        tblEstoque = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -82,10 +82,10 @@ public class TelaGerente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(16, 16, 16))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(94, 94, 94)
                 .addComponent(jLabel1)
-                .addGap(82, 82, 82))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +98,7 @@ public class TelaGerente extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                 .addComponent(lblTrocarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -119,7 +119,7 @@ public class TelaGerente extends javax.swing.JFrame {
             }
         });
 
-        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        tblEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -127,16 +127,16 @@ public class TelaGerente extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Preco", "Descricao", "Estoque"
+                "Código", "Nome", "Preco", "Descricao", "Estoque", "Categoria"
             }
         ));
-        tblProdutos.setRowHeight(30);
-        tblProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblEstoque.setRowHeight(30);
+        tblEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblProdutosMouseClicked(evt);
+                tblEstoqueMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tblProdutos);
+        jScrollPane2.setViewportView(tblEstoque);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,16 +199,16 @@ public class TelaGerente extends javax.swing.JFrame {
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         // TODO add your handling code here:
-        CadastroProduto modalCadastro = new CadastroProduto();
+        CadastroEstoque modalCadastro = new CadastroEstoque();
 
         modalCadastro.setVisible(true);
 
         dispose();
     }//GEN-LAST:event_btnInserirActionPerformed
 
-    private void tblProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutosMouseClicked
+    private void tblEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEstoqueMouseClicked
         CarregarCampos();
-    }//GEN-LAST:event_tblProdutosMouseClicked
+    }//GEN-LAST:event_tblEstoqueMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,51 +221,54 @@ public class TelaGerente extends javax.swing.JFrame {
         });
     }
 
+    public void setTblProdutos(JTable tblProdutos) {
+        this.tblEstoque = tblProdutos;
+    }
+
+    public JTable getTblProdutos() {
+        return tblEstoque;
+    }
+
+    private void CarregarCampos() {
+        ModalAcoes acoes = new ModalAcoes();
+        int linhaSelecionada = tblEstoque.getSelectedRow();
+        
+
+        acoes.getTxtCodigo().setText(tblEstoque.getModel().getValueAt(linhaSelecionada, 0).toString());
+        acoes.getTxtNomeProduto().setText(tblEstoque.getModel().getValueAt(linhaSelecionada, 1).toString());
+        acoes.getTxtPreco().setText(tblEstoque.getModel().getValueAt(linhaSelecionada, 2).toString());
+        acoes.getTxtAreaDescricao().setText(tblEstoque.getModel().getValueAt(linhaSelecionada, 3).toString());
+        acoes.getTxtEstoque().setText(tblEstoque.getModel().getValueAt(linhaSelecionada, 4).toString());
+     
+  
+
+        acoes.setVisible(true);
+
+        dispose();
+    }
+
     public void ListaProdutos() {
         try {
-            ProdutoDAO pdao = new ProdutoDAO();
+            EstoqueDAO edao = new EstoqueDAO();
 
-            DefaultTableModel model = (DefaultTableModel) tblProdutos.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblEstoque.getModel();
 
             model.setNumRows(0);
 
-            for (ProdutoModel pm : pdao.getAllProducts()) {
+            for (EstoqueModel em : edao.getAllProducts()) {
                 model.addRow(new Object[]{
-                    pm.getId_product(),
-                    pm.getName(),
-                    pm.getPrice(),
-                    pm.getDescription(),
-                    pm.getStockQuantity()
+                    em.getId_stock(),
+                    em.getName(),
+                    em.getPrice(),
+                    em.getDescription(),
+                    em.getStockQuantity(),
+                    em.getCategory(),
                 });
             }
 
         } catch (Exception e) {
             System.out.println("Erro ao listar produtos " + e);
         }
-    }
-
-    public void setTblProdutos(JTable tblProdutos) {
-        this.tblProdutos = tblProdutos;
-    }
-
-    public JTable getTblProdutos() {
-        return tblProdutos;
-    }
-
-    private void CarregarCampos() {
-        ModalAcoes acoes= new ModalAcoes();
-        int linhaSelecionada = tblProdutos.getSelectedRow();
-        
-        acoes.getTxtCodigo().setText(tblProdutos.getModel().getValueAt(linhaSelecionada, 0).toString());
-        acoes.getTxtNomeProduto().setText(tblProdutos.getModel().getValueAt(linhaSelecionada, 1).toString());
-        acoes.getTxtPreco().setText(tblProdutos.getModel().getValueAt(linhaSelecionada, 2).toString());
-        acoes.getTxtAreaDescricao().setText(tblProdutos.getModel().getValueAt(linhaSelecionada, 3).toString());
-        acoes.getTxtEstoque().setText(tblProdutos.getModel().getValueAt(linhaSelecionada,4).toString());
-        
-        
-        acoes.setVisible(true);
-        
-        dispose();
     }
 
 
@@ -281,7 +284,7 @@ public class TelaGerente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTrocarUsuario;
-    private javax.swing.JTable tblProdutos;
+    private javax.swing.JTable tblEstoque;
     // End of variables declaration//GEN-END:variables
 
     int setTblProdutos(DefaultTableModel model) {

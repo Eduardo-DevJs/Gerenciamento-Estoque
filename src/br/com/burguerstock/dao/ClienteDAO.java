@@ -7,11 +7,11 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-import br.com.burguerstock.model.ClienteModel;
+import br.com.burguerstock.model.FornecedorModel;
 
 public class ClienteDAO {
 
-    public void createClient(ClienteModel clienteModel) {
+    public void createClient(FornecedorModel clienteModel) {
         String sql = "INSERT INTO clientes (nome, idade, email, telefone) VALUES (?,?,?,?)";
 
         Connection con = null;
@@ -33,7 +33,7 @@ public class ClienteDAO {
         }
     }
 
-    public List<ClienteModel> getClients() {
+    public List<FornecedorModel> getClients() {
 
         String sql = "SELECT * FROM clientes";
 
@@ -41,7 +41,7 @@ public class ClienteDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        ArrayList<ClienteModel> allClients = new ArrayList<ClienteModel>();
+        ArrayList<FornecedorModel> allClients = new ArrayList<FornecedorModel>();
 
         try {
             con = Conexao.createConnectionSQL();
@@ -49,7 +49,7 @@ public class ClienteDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                ClienteModel cm = new ClienteModel();
+                FornecedorModel cm = new FornecedorModel();
 
                 cm.setId_client(rs.getInt("id_cliente"));
                 cm.setName(rs.getString("nome"));
@@ -67,7 +67,7 @@ public class ClienteDAO {
         return allClients;
     }
 
-    public void updateClient(ClienteModel clienteModel) {
+    public void updateClient(FornecedorModel clienteModel) {
         String sql = "UPDATE SET clientes nome=?, idade=?, email=?, telefone=? WHERE id_cliente";
 
         Connection con = null;

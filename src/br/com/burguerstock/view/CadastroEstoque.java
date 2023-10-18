@@ -4,7 +4,10 @@
  */
 package br.com.burguerstock.view;
 
-import br.com.burguerstock.controller.ProdutoController;
+import br.com.burguerstock.controller.EstoqueController;
+import br.com.burguerstock.dao.EstoqueDAO;
+import br.com.burguerstock.model.EstoqueModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -14,14 +17,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author eliria
  */
-public class CadastroProduto extends javax.swing.JFrame {
+public class CadastroEstoque extends javax.swing.JFrame {
 
     /**
      * Creates new form ModalCadastro
      */
-    public CadastroProduto() {
+    public CadastroEstoque() {
         initComponents();
+        ListarComboBox();
         txtCodigo.setVisible(false);
+
     }
 
     /**
@@ -50,6 +55,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         lblVoltarTelaAdministrador = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
+        cboxCategoria = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Cadastro");
@@ -142,6 +149,12 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        cboxCategoria.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        cboxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+
+        jLabel7.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
+        jLabel7.setText("Categoria");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,24 +166,27 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtEstoque)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNomeProduto)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtEstoque, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(0, 11, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(165, 165, 165))
-                                    .addComponent(txtPreco)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtPreco)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addGap(165, 165, 165))
+                                        .addComponent(cboxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel7)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -198,9 +214,13 @@ public class CadastroProduto extends javax.swing.JFrame {
                     .addComponent(txtPreco)
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cboxCategoria)
+                    .addComponent(txtEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -213,9 +233,9 @@ public class CadastroProduto extends javax.swing.JFrame {
                             .addComponent(btnCadastrarProduto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(13, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(323, 323, 323)
                         .addComponent(lblVoltarTelaAdministrador)
                         .addContainerGap())))
         );
@@ -239,10 +259,10 @@ public class CadastroProduto extends javax.swing.JFrame {
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
         CadastrarProduto();
-        TelaGerente administrador = new TelaGerente();
-        
-        administrador.ListaProdutos();
-        
+        TelaVendedor vendedor = new TelaVendedor();
+
+        vendedor.ListaProdutos();
+
         LimparCampos();
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
@@ -274,21 +294,23 @@ public class CadastroProduto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroProduto().setVisible(true);
+                new CadastroEstoque().setVisible(true);
             }
         });
     }
@@ -309,13 +331,14 @@ public class CadastroProduto extends javax.swing.JFrame {
                 String descricaoProduto = txtAreaDescricao.getText();
                 int precoProduto = Integer.parseInt(txtPreco.getText());
                 int estoqueProduto = Integer.parseInt(txtEstoque.getText());
+                String itemSelecionado = cboxCategoria.getSelectedItem().toString();
 
                 if (estoqueProduto < 10) {
                     JOptionPane.showMessageDialog(null, "Estoque minimo é 10");
                 } else {
 
-                    ProdutoController produtoController = new ProdutoController();
-                    sucesso = produtoController.CadastroProduto(nomeProduto, precoProduto, descricaoProduto, estoqueProduto);
+                    EstoqueController produtoController = new EstoqueController();
+                    sucesso = produtoController.CadastroEstoque(nomeProduto, precoProduto, descricaoProduto, estoqueProduto, itemSelecionado);
 
                     if (sucesso == true) {
                         JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
@@ -330,7 +353,13 @@ public class CadastroProduto extends javax.swing.JFrame {
         }
     }
 
+    private void ListarComboBox() {
+        EstoqueDAO edao = new EstoqueDAO();
 
+        for (EstoqueModel em : edao.getAllProducts()) {
+            cboxCategoria.addItem(em);
+        }
+    }
 
     private void LimparCampos() {
         txtNomeProduto.setText("");
@@ -380,16 +409,23 @@ public class CadastroProduto extends javax.swing.JFrame {
         this.txtPreco = txtPreco;
     }
 
+    public JComboBox<Object> getCboxCategoria() {
+        return cboxCategoria;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnLimparCampos;
+    private javax.swing.JComboBox<Object> cboxCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

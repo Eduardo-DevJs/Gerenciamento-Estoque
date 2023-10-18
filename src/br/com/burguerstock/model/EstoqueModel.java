@@ -1,38 +1,53 @@
 package br.com.burguerstock.model;
 
-public class ProdutoModel {
+public class EstoqueModel {
 
-    private int id_product;
+    private int id_stock;
     private String name;
     private String description;
     private int price;
     private int stockQuantity;
+    private String category;
 
-    public ProdutoModel() {
+    public EstoqueModel() {
 
     }
 
-    public ProdutoModel(int id_product, String name, String description, int price, int stockQuantity) {
-        this.id_product = id_product;
+    public EstoqueModel(int id_stock, String name, String description, int price, int stockQuantity) {
+        this.id_stock = id_stock;
         this.name = name;
         this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
-
     }
 
-    public ProdutoModel(String name, String description, int price, int stockQuantity) {
+    public EstoqueModel(String name, String description, int price, int stockQuantity) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
-
     }
 
-    public ProdutoModel(int id_product,String description, int price) {
-        this.id_product = id_product;
+    public EstoqueModel(String name, String description, int price, int stockQuantity, String categoria) {
+        this.name = name;
         this.description = description;
         this.price = price;
+        this.stockQuantity = stockQuantity;
+        this.category = categoria;
+    }
+
+    public EstoqueModel(String description, int price) {
+        this.description = description;
+        this.price = price;
+    }
+    
+    
+    public int getId_stock() {
+        return id_stock;
+    }
+
+    public void setId_stock(int id_stock) {
+        this.id_stock = id_stock;
     }
 
     public String getName() {
@@ -67,12 +82,18 @@ public class ProdutoModel {
         this.stockQuantity = stockQuantity;
     }
 
-    public int getId_product() {
-        return id_product;
+    public String getCategory() {
+        return category;
     }
 
-    public void setId_product(int id_product) {
-        this.id_product = id_product;
+    public void setCategory(String categoria) {
+        this.category = categoria;
     }
 
+    @Override
+    public String toString() {
+        return getCategory();
+    }
+
+    
 }

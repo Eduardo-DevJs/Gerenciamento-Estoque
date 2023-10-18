@@ -4,8 +4,10 @@
  */
 package br.com.burguerstock.view;
 
-import br.com.burguerstock.controller.ProdutoController;
-import br.com.burguerstock.model.ProdutoModel;
+import br.com.burguerstock.controller.EstoqueController;
+import br.com.burguerstock.dao.EstoqueDAO;
+import br.com.burguerstock.model.EstoqueModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -166,31 +168,9 @@ public class ModalAcoes extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtEstoque)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNomeProduto)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(0, 11, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(165, 165, 165))
-                                    .addComponent(txtPreco)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
@@ -203,7 +183,29 @@ public class ModalAcoes extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblVoltarTelaAdministrador)))
+                        .addComponent(lblVoltarTelaAdministrador))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtEstoque)
+                            .addComponent(jScrollPane1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(0, 22, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPreco)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(196, 196, 196)))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -236,7 +238,7 @@ public class ModalAcoes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 14, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblVoltarTelaAdministrador)
                         .addContainerGap())))
@@ -255,7 +257,7 @@ public class ModalAcoes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(495, 610));
+        setSize(new java.awt.Dimension(537, 610));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -277,7 +279,7 @@ public class ModalAcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_lblVoltarTelaAdministradorMouseClicked
 
     private void btnEditarProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProduto1ActionPerformed
-       
+       EditarProduto();
     }//GEN-LAST:event_btnEditarProduto1ActionPerformed
 
     /**
@@ -321,7 +323,7 @@ public class ModalAcoes extends javax.swing.JFrame {
     private void EditarProduto() {
         String preco = txtPreco.getText();
         String descricao = txtAreaDescricao.getText();
-        ProdutoModel pm = new ProdutoModel();
+        EstoqueModel em = new EstoqueModel();
        
         boolean sucesso;
 
@@ -333,11 +335,11 @@ public class ModalAcoes extends javax.swing.JFrame {
                 int precoProduto = Integer.parseInt(txtPreco.getText());
                 int codigoProduto = Integer.parseInt(txtCodigo.getText());
 
-                if (precoProduto < pm.getPrice()) {
+                if (precoProduto < em.getPrice()) {
                     JOptionPane.showMessageDialog(null, "O preço do produto nao pode ser menor que o custo");
                 } else {
-                    ProdutoController produtoController = new ProdutoController();
-                    sucesso = produtoController.EditarProduto(codigoProduto,precoProduto, descricaoProduto);
+                    EstoqueController produtoController = new EstoqueController();
+                    sucesso = produtoController.EditarEstoque(codigoProduto,precoProduto, descricaoProduto);
 
                     if (sucesso == true) {
                         JOptionPane.showMessageDialog(null, "Editado com sucesso!");
@@ -354,7 +356,6 @@ public class ModalAcoes extends javax.swing.JFrame {
     }
     
     
-
     private void LimparCampos() {
         txtPreco.setText("");
         txtAreaDescricao.setText("");
@@ -402,6 +403,9 @@ public class ModalAcoes extends javax.swing.JFrame {
         this.txtPreco = txtPreco;
     }
 
+
+    
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditarProduto;

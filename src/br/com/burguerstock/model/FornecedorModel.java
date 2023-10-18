@@ -1,6 +1,6 @@
 package br.com.burguerstock.model;
 
-public class ClienteModel {
+public class FornecedorModel {
 
     private int id_client;
     private String name;
@@ -8,10 +8,10 @@ public class ClienteModel {
     private String email;
     private String telephone;
 
-    public ClienteModel() {
+    public FornecedorModel() {
     }
 
-    public ClienteModel(int id_client, String name, int age, String email, String telephone) {
+    public FornecedorModel(int id_client, String name, int age, String email, String telephone) {
         this.id_client = id_client;
         this.name = name;
         this.age = age;
@@ -19,7 +19,7 @@ public class ClienteModel {
         this.telephone = telephone;
     }
 
-    public ClienteModel(String name, int age, String email, String telephone) {
+    public FornecedorModel(String name, int age, String email, String telephone) {
         this.name = name;
         this.age = age;
         this.email = email;

@@ -6,7 +6,7 @@
 package br.com.burguerstock.view;
 
 import br.com.burguerstock.controller.ClienteController;
-import br.com.burguerstock.controller.ProdutoController;
+import br.com.burguerstock.controller.EstoqueController;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
