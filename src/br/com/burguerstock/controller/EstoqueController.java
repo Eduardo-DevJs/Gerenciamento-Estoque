@@ -19,7 +19,7 @@ public class EstoqueController {
     
     public boolean EditarEstoque(Integer id_estoque,Integer preco, String descricao) {
         if (preco > 0 && descricao != null && descricao.length() > 0) {
-            EstoqueModel em = new EstoqueModel(descricao,preco);
+            EstoqueModel em = new EstoqueModel(id_estoque,descricao,preco);
             EstoqueDAO edao = new EstoqueDAO();
             edao.updateProduct(em);
             return true;

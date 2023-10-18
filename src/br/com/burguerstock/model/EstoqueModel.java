@@ -36,12 +36,12 @@ public class EstoqueModel {
         this.category = categoria;
     }
 
-    public EstoqueModel(String description, int price) {
+    public EstoqueModel(int id_stock, String description, int price) {
+        this.id_stock = id_stock;
         this.description = description;
         this.price = price;
     }
-    
-    
+
     public int getId_stock() {
         return id_stock;
     }
@@ -95,5 +95,4 @@ public class EstoqueModel {
         return getCategory();
     }
 
-    
 }
