@@ -5,8 +5,13 @@
 package br.com.burguerstock.view;
 
 import br.com.burguerstock.controller.EstoqueController;
+import br.com.burguerstock.dao.CategoriaDAO;
 import br.com.burguerstock.dao.EstoqueDAO;
+import br.com.burguerstock.model.CategoriaModel;
 import br.com.burguerstock.model.EstoqueModel;
+import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -326,6 +331,16 @@ public class CadastroEstoque extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
             try {
+                CategoriaDAO cdao = new CategoriaDAO();
+                DefaultComboBoxModel model = (DefaultComboBoxModel) cboxCategoria.getModel();
+               
+     
+                for (CategoriaModel cm :cdao.getCategory() ) {
+                    System.out.println(cm);
+                }
+                
+              
+
                 String nomeProduto = txtNomeProduto.getText();
                 String descricaoProduto = txtAreaDescricao.getText();
                 int precoProduto = Integer.parseInt(txtPreco.getText());
@@ -412,7 +427,6 @@ public class CadastroEstoque extends javax.swing.JFrame {
         return cboxCategoria;
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarProduto;

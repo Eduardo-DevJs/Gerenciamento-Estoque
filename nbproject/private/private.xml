@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/dudu/NetBeansProjects/GerenciamentoHamburgueria/src/br/com/burguerstock/view/CadastroProduto.java</file>
-            <file>file:/home/dudu/NetBeansProjects/GerenciamentoHamburgueria/src/br/com/burguerstock/view/TelaGerente.java</file>
-            <file>file:/home/dudu/NetBeansProjects/GerenciamentoHamburgueria/src/br/com/burguerstock/view/TelaVendedor.java</file>
-            <file>file:/home/dudu/NetBeansProjects/GerenciamentoHamburgueria/src/br/com/burguerstock/view/ModalAcoes.java</file>
-            <file>file:/home/dudu/NetBeansProjects/GerenciamentoHamburgueria/src/br/com/burguerstock/dao/EstoqueDAO.java</file>
-            <file>file:/home/dudu/NetBeansProjects/GerenciamentoHamburgueria/src/br/com/burguerstock/index/Index.java</file>
+            <file>file:/C:/Users/eliria/Documents/NetBeansProjects/GerenciamentoEstoque/Gerenciamento-Estoque-/src/br/com/burguerstock/view/ModalAcoes.java</file>
+            <file>file:/C:/Users/eliria/Documents/NetBeansProjects/GerenciamentoEstoque/Gerenciamento-Estoque-/src/br/com/burguerstock/view/TelaGerente.java</file>
+            <file>file:/C:/Users/eliria/Documents/NetBeansProjects/GerenciamentoEstoque/Gerenciamento-Estoque-/src/br/com/burguerstock/controller/EstoqueController.java</file>
+            <file>file:/C:/Users/eliria/Documents/NetBeansProjects/GerenciamentoEstoque/Gerenciamento-Estoque-/src/br/com/burguerstock/dao/EstoqueDAO.java</file>
+            <file>file:/C:/Users/eliria/Documents/NetBeansProjects/GerenciamentoEstoque/Gerenciamento-Estoque-/src/br/com/burguerstock/view/CadastroEstoque.java</file>
+            <file>file:/C:/Users/eliria/Documents/NetBeansProjects/GerenciamentoEstoque/Gerenciamento-Estoque-/src/br/com/burguerstock/model/EstoqueModel.java</file>
+            <file>file:/C:/Users/eliria/Documents/NetBeansProjects/GerenciamentoEstoque/Gerenciamento-Estoque-/src/br/com/burguerstock/view/TelaVendedor.java</file>
+            <file>file:/C:/Users/eliria/Documents/NetBeansProjects/GerenciamentoEstoque/Gerenciamento-Estoque-/src/br/com/burguerstock/index/Index.java</file>
         </group>
     </open-files>
 </project-private>

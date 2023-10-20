@@ -23,7 +23,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btnCadastrarCliente = new javax.swing.JButton();
+        btnCadastrarCategoria = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -102,14 +102,14 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/burguerstock/imagens/icons8-hamburguer-40.png"))); // NOI18N
 
-        btnCadastrarCliente.setBackground(new java.awt.Color(184, 37, 37));
-        btnCadastrarCliente.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        btnCadastrarCliente.setForeground(new java.awt.Color(250, 250, 250));
-        btnCadastrarCliente.setText("Cadastrar Cliente");
-        btnCadastrarCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
-        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarCategoria.setBackground(new java.awt.Color(184, 37, 37));
+        btnCadastrarCategoria.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btnCadastrarCategoria.setForeground(new java.awt.Color(250, 250, 250));
+        btnCadastrarCategoria.setText("Cadastrar categoria");
+        btnCadastrarCategoria.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
+        btnCadastrarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarClienteActionPerformed(evt);
+                btnCadastrarCategoriaActionPerformed(evt);
             }
         });
 
@@ -121,13 +121,13 @@ public class TelaAdministrador extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 938, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(787, Short.MAX_VALUE))))
+                        .addComponent(btnCadastrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +135,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadastrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
 
@@ -162,13 +162,13 @@ public class TelaAdministrador extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_lblTrocarUsuarioMouseClicked
 
-    private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
+    private void btnCadastrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCategoriaActionPerformed
         // TODO add your handling code here:
-        CadastroCliente cc = new CadastroCliente();
+        CadastroCategoria cc = new CadastroCategoria();
         cc.setVisible(true);
         
         dispose();
-    }//GEN-LAST:event_btnCadastrarClienteActionPerformed
+    }//GEN-LAST:event_btnCadastrarCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +183,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrarCliente;
+    private javax.swing.JButton btnCadastrarCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
