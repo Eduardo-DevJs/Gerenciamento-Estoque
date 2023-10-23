@@ -47,8 +47,9 @@ public class CategoriaDAO {
             
             while(rs.next()){
                 CategoriaModel categoriaModel = new CategoriaModel();
-                categoriaModel.setCategory(rs.getString("catetoria"));
-                
+               
+                categoriaModel.setCategory(rs.getString("categoria"));
+        
                 categories.add(categoriaModel);
             }
          

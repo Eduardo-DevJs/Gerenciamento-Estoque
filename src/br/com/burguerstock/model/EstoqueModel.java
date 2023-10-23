@@ -4,42 +4,34 @@ public class EstoqueModel {
 
     private int id_stock;
     private String name;
-    private String description;
     private int price;
     private int stockQuantity;
-    private String category;
+    private String description;
 
     public EstoqueModel() {
 
     }
 
-    public EstoqueModel(int id_stock, String name, String description, int price, int stockQuantity) {
+    public EstoqueModel(int id_stock, String name, int price, int stockQuantity, String description) {
         this.id_stock = id_stock;
         this.name = name;
-        this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
+        this.description = description;
     }
 
-    public EstoqueModel(String name, String description, int price, int stockQuantity) {
+    public EstoqueModel(String name, int price, int stockQuantity, String description) {
+        this.id_stock = id_stock;
         this.name = name;
-        this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
-    }
-
-    public EstoqueModel(String name, String description, int price, int stockQuantity, String categoria) {
-        this.name = name;
         this.description = description;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-        this.category = categoria;
     }
 
     public EstoqueModel(int id_stock, String description, int price) {
         this.id_stock = id_stock;
-        this.description = description;
         this.price = price;
+        this.description = description;
     }
 
     public int getId_stock() {
@@ -80,19 +72,6 @@ public class EstoqueModel {
 
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String categoria) {
-        this.category = categoria;
-    }
-
-    @Override
-    public String toString() {
-        return getCategory();
     }
 
 }

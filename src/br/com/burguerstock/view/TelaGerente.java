@@ -260,9 +260,8 @@ public class TelaGerente extends javax.swing.JFrame {
                     em.getId_stock(),
                     em.getName(),
                     em.getPrice(),
-                    em.getDescription(),
                     em.getStockQuantity(),
-                    em.getCategory(),
+                    em.getDescription(),
                 });
             }
 

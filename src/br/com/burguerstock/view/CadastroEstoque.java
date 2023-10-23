@@ -9,14 +9,11 @@ import br.com.burguerstock.dao.CategoriaDAO;
 import br.com.burguerstock.dao.EstoqueDAO;
 import br.com.burguerstock.model.CategoriaModel;
 import br.com.burguerstock.model.EstoqueModel;
-import java.util.List;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,6 +29,7 @@ public class CadastroEstoque extends javax.swing.JFrame {
         ListarComboBox();
         txtCodigo.setVisible(false);
 
+        ListarComboBox();
     }
 
     /**
@@ -318,6 +316,8 @@ public class CadastroEstoque extends javax.swing.JFrame {
             }
         });
     }
+    
+  
 
     private void CadastrarProduto() {
         String preco = txtPreco.getText();
@@ -331,16 +331,6 @@ public class CadastroEstoque extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
             try {
-                CategoriaDAO cdao = new CategoriaDAO();
-                DefaultComboBoxModel model = (DefaultComboBoxModel) cboxCategoria.getModel();
-               
-     
-                for (CategoriaModel cm :cdao.getCategory() ) {
-                    System.out.println(cm);
-                }
-                
-              
-
                 String nomeProduto = txtNomeProduto.getText();
                 String descricaoProduto = txtAreaDescricao.getText();
                 int precoProduto = Integer.parseInt(txtPreco.getText());
@@ -352,7 +342,7 @@ public class CadastroEstoque extends javax.swing.JFrame {
                 } else {
 
                     EstoqueController produtoController = new EstoqueController();
-                    sucesso = produtoController.CadastroEstoque(nomeProduto, precoProduto, descricaoProduto, estoqueProduto, itemSelecionado);
+                    sucesso = produtoController.CadastroEstoque(nomeProduto, precoProduto, estoqueProduto,descricaoProduto);
 
                     if (sucesso == true) {
                         JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
@@ -368,9 +358,9 @@ public class CadastroEstoque extends javax.swing.JFrame {
     }
 
     private void ListarComboBox() {
-        EstoqueDAO edao = new EstoqueDAO();
+        CategoriaDAO cdao = new CategoriaDAO();
 
-        for (EstoqueModel em : edao.getAllProducts()) {
+        for (CategoriaModel em : cdao.getCategory()) {
             cboxCategoria.addItem(em);
         }
     }

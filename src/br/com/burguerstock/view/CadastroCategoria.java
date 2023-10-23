@@ -178,7 +178,7 @@ public class CadastroCategoria extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(476, 308));
+        setSize(new java.awt.Dimension(535, 308));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class EstoqueDAO {
 
     public void CreateProduct(EstoqueModel estoqueModel) {
-        String sql = "INSERT INTO estoque (nome,descricao,preco_unitario,qtd_estoque,categoria) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO estoques (nome,preco_unitario,qtd_estoque, descricao) VALUES (?,?,?,?)";
 
         Connection con = null;
         PreparedStatement ps = null;
@@ -23,11 +23,10 @@ public class EstoqueDAO {
             ps = con.prepareStatement(sql);
 
             ps.setString(1, estoqueModel.getName());
-            ps.setString(2, estoqueModel.getDescription());
-            ps.setInt(3, estoqueModel.getPrice());
-            ps.setInt(4, estoqueModel.getStockQuantity());
-            ps.setString(5,estoqueModel.getCategory());
-    
+            ps.setInt(2, estoqueModel.getPrice());
+            ps.setInt(3, estoqueModel.getStockQuantity());
+            ps.setString(4, estoqueModel.getDescription());
+      
 
             ps.execute();
 
@@ -38,7 +37,7 @@ public class EstoqueDAO {
 
     public List<EstoqueModel> getAllProducts() {
 
-        String sql = "SELECT * FROM estoque";
+        String sql = "SELECT estoques.id_estoque, estoques.nome, estoques.preco_unitario, estoques.descricao, estoques.qtd_estoque, categorias.categoria FROM estoques INNER JOIN categorias ON estoques.id_estoque = categorias.id_estoque;";
 
         Connection con = null;
         ResultSet rs = null;
@@ -56,23 +55,23 @@ public class EstoqueDAO {
 
                 produtoModel.setId_stock(rs.getInt("id_estoque"));
                 produtoModel.setName(rs.getString("nome"));
-                produtoModel.setDescription(rs.getString("descricao"));
                 produtoModel.setPrice(rs.getInt("preco_unitario"));
                 produtoModel.setStockQuantity(rs.getInt("qtd_estoque"));
-                produtoModel.setCategory(rs.getString("categoria"));
+                produtoModel.setDescription(rs.getString("descricao"));
+                
 
                 allProducts.add(produtoModel);
             }
 
         } catch (Exception e) {
-            System.out.println("Erro ao mostrar estoque" + e);
+            System.out.println("Erro ao mostrar estoque " + e);
         }
 
         return allProducts;
     }
 
     public void updateProduct(EstoqueModel estoqueModel) {
-        String sql = "UPDATE estoque SET descricao =?, preco_unitario=? WHERE id_estoque =?";
+        String sql = "UPDATE estoques SET descricao =?, preco_unitario=? WHERE id_estoque =?";
 
         Connection con = null;
         PreparedStatement ps = null;
@@ -90,12 +89,12 @@ public class EstoqueDAO {
             ps.execute();
 
         } catch (Exception e) {
-            System.out.println("Erro ao atualizar produtos " + e);
+            System.out.println("Erro ao atualizar estoque " + e);
         }
     }
 
     public void deleteProduct(int id) {
-        String sql = "DELETE FROM estoque WHERE id_estoque=?";
+        String sql = "DELETE FROM estoques WHERE id_estoque=?";
 
         Connection con = null;
         PreparedStatement ps = null;
